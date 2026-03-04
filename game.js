@@ -239,9 +239,9 @@ class BreedHuntGame {
     return (pts - prev) / (next - prev);
   }
 
-  // === PROXIMITY: 15ft range check ===
+  // === PROXIMITY: 10ft range check ===
   // Range radius in map % units — sightings within this distance from center (50,50) are in range
-  static RANGE_RADIUS = 12;
+  static RANGE_RADIUS = 10;
 
   isInRange(x, y) {
     const dx = x - 50;
@@ -264,10 +264,10 @@ class BreedHuntGame {
     // Remove expired sightings (30s lifespan)
     this.activeSightings = this.activeSightings.filter(s => now - s.createdAt < 30000);
 
-    // Keep max 4 active sightings
-    if (this.activeSightings.length >= 4) return;
+    // Keep max 6 active sightings
+    if (this.activeSightings.length >= 6) return;
 
-    const slotsToFill = Math.min(1, 4 - this.activeSightings.length);
+    const slotsToFill = Math.min(2, 6 - this.activeSightings.length);
     let added = false;
 
     for (let i = 0; i < slotsToFill; i++) {
@@ -279,7 +279,7 @@ class BreedHuntGame {
 
         let x, y;
         // ~60% of spawns within range, ~40% outside (visible but locked)
-        const spawnNear = Math.random() < 0.4;
+        const spawnNear = Math.random() < 0.25;
         if (spawnNear) {
           // Spawn within range circle (radius 21 from center), but not on top of player (min 8)
           const angle = Math.random() * Math.PI * 2;
@@ -339,7 +339,7 @@ class BreedHuntGame {
     const sighting = this.activeSightings.find(s => s.uid === sightingUid);
     if (!sighting || this.catchPhase !== 'idle') return;
 
-    // Must be within 15ft range on the map to approach
+    // Must be within 10ft range on the map to approach
     if (!this.isInRange(sighting.x, sighting.y)) {
       this.showNotification('Too far! Walk within range to spot this dog.', 'warning');
       return;
