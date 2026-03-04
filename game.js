@@ -278,12 +278,12 @@ class BreedHuntGame {
         const msgIdx = Math.floor(Math.random() * SIGHTING_MESSAGES.length);
 
         let x, y;
-        // ~60% of spawns within range, ~40% outside (visible but locked)
+        // ~25% of spawns within range, ~75% outside (visible but locked)
         const spawnNear = Math.random() < 0.25;
         if (spawnNear) {
-          // Spawn within range circle (radius 21 from center), but not on top of player (min 8)
+          // Spawn within range circle, not on top of player (min 2)
           const angle = Math.random() * Math.PI * 2;
-          const r = 8 + Math.random() * (BreedHuntGame.RANGE_RADIUS - 8);
+          const r = 2 + Math.random() * (BreedHuntGame.RANGE_RADIUS - 2);
           x = 50 + Math.cos(angle) * r;
           y = 50 + Math.sin(angle) * r;
         } else {
