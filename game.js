@@ -241,7 +241,7 @@ class BreedHuntGame {
 
   // === PROXIMITY: 15ft range check ===
   // Range radius in map % units — sightings within this distance from center (50,50) are in range
-  static RANGE_RADIUS = 21;
+  static RANGE_RADIUS = 12;
 
   isInRange(x, y) {
     const dx = x - 50;
@@ -252,7 +252,7 @@ class BreedHuntGame {
   // === Fi GPS SIGHTINGS SYSTEM ===
   startSightings() {
     this.generateSightings();
-    this.sightingTimer = setInterval(() => this.generateSightings(), 8000);
+    this.sightingTimer = setInterval(() => this.generateSightings(), 12000);
   }
 
   stopSightings() {
@@ -264,10 +264,10 @@ class BreedHuntGame {
     // Remove expired sightings (30s lifespan)
     this.activeSightings = this.activeSightings.filter(s => now - s.createdAt < 30000);
 
-    // Keep max 8 active sightings
-    if (this.activeSightings.length >= 8) return;
+    // Keep max 4 active sightings
+    if (this.activeSightings.length >= 4) return;
 
-    const slotsToFill = Math.min(2, 8 - this.activeSightings.length);
+    const slotsToFill = Math.min(1, 4 - this.activeSightings.length);
     let added = false;
 
     for (let i = 0; i < slotsToFill; i++) {
@@ -279,7 +279,7 @@ class BreedHuntGame {
 
         let x, y;
         // ~60% of spawns within range, ~40% outside (visible but locked)
-        const spawnNear = Math.random() < 0.6;
+        const spawnNear = Math.random() < 0.4;
         if (spawnNear) {
           // Spawn within range circle (radius 21 from center), but not on top of player (min 8)
           const angle = Math.random() * Math.PI * 2;
