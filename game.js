@@ -252,7 +252,7 @@ class BreedHuntGame {
   // === Fi GPS SIGHTINGS SYSTEM ===
   startSightings() {
     this.generateSightings();
-    this.sightingTimer = setInterval(() => this.generateSightings(), 12000);
+    this.sightingTimer = setInterval(() => this.generateSightings(), 3000);
   }
 
   stopSightings() {
