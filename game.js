@@ -369,7 +369,6 @@ class BreedHuntGame {
       if (fled) {
         this.catchResult = 'fled';
         this.catchPhase = 'result';
-        this.state.catchStreak = 0;
         this.saveState();
         this.render();
       } else {
