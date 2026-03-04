@@ -703,7 +703,7 @@ class BreedHuntGame {
       <div class="explore-map">
         <div class="map-grid"></div>
         <div class="map-range-circle"></div>
-        <div class="map-range-label">15 ft range</div>
+        <div class="map-range-label">10 ft range</div>
         <div class="map-player">
           <div class="player-pulse"></div>
           <div class="player-dot"></div>
@@ -786,7 +786,7 @@ class BreedHuntGame {
           <div class="approach-distance-bar">
             <div class="approach-distance-fill" style="animation-duration: ${this.approachDuration}ms"></div>
             <span class="approach-distance-text">${dist} mi</span>
-            <span class="approach-distance-target">15 ft</span>
+            <span class="approach-distance-target">10 ft</span>
           </div>
           <p class="approach-text">Walking towards ${breed.name}...</p>
           <div class="approach-dots"><span></span><span></span><span></span></div>
